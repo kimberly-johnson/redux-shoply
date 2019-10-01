@@ -1,5 +1,5 @@
 {
-  "products": [{
+  "products": {
     "47314fa1-ae56-4eae-80be-af6691145951": {
       "name": "tv",
       "price": 219.99,
@@ -36,5 +36,5 @@
       "description": "Because there are absolutely no downsides that come with easier access to social media.",
       "image_url": "https://images-na.ssl-images-amazon.com/images/I/717DO5Q-aCL._SY879_.jpg"
     }
-  }]
+  }
 }

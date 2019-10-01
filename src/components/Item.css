@@ -1,0 +1,9 @@
+li {
+  display: flex;
+  align-items: center;
+}
+
+li .buttons {
+  display: flex;
+  flex-direction: column;
+}

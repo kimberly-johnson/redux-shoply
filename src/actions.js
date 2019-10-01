@@ -1,13 +1,15 @@
 import { ADD, REMOVE } from "./actionTypes";
 
-export function add() {
+export function add(item) {
   return {
-    type: ADD
+    type: ADD,
+    payload: item
   };
 }
 
-export function remove() {
+export function remove(id) {
   return {
-    type: REMOVE
+    type: REMOVE,
+    payload: id
   };
 }

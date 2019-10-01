@@ -4,7 +4,8 @@ import ItemsList from "../components/ItemsList";
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    products: state.products,
+    cart: state.cart
   }
 }
 

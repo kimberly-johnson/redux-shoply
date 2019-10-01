@@ -9,27 +9,44 @@ class Counter extends Component {
 
     this.add = this.add.bind(this);
     this.remove = this.remove.bind(this);
+    this.displayProducts = this.displayProducts.bind(this);
   }
 
-  add() { this.props.add(); }
-  remove() { this.props.remove(); }
+  add(item) {
+    this.props.add(item);
+  }
+  remove(id) {
+    this.props.remove(id);
+  }
+
+  displayProducts(products) {
+    let allProducts = [];
+    for (let key in products) {
+      allProducts.push(
+        <Item
+          key={key}
+          id={key}
+          add={this.add}
+          remove={this.remove}
+          name={products[key].name}
+          price={products[key].price}
+          description={products[key].description}
+          image_url={products[key].image_url}
+          count={products[key].count}
+        />
+      );
+    }
+    return allProducts;
+  }
 
   render() {
-    console.log(this.state);
-
+    console.log(this.props)
     return (
       <div>
-        {this.state.products.map(product => (
-          <Item
-            add={this.add}
-            remove={this.remove}
-            name={product.name}
-            price={product.price}
-            description={product.description}
-            image_url={product.image_url}
-          />)
-        )
-        }
+        <h1>Shoply all day</h1>
+        <ul className='list-unstyled w-75 mt-5' style={{ margin: 'auto' }}>
+          {this.displayProducts(this.props.products)}
+        </ul>
       </div>
     );
   }
@@ -37,7 +54,8 @@ class Counter extends Component {
 
 function mapStateToProps(state) {
   return {
-    count: state.count
+    products: state.products,
+    cart: state.cart
   };
 }
 
