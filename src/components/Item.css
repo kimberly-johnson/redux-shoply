@@ -1,9 +1,16 @@
 li {
   display: flex;
   align-items: center;
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 10px
 }
 
 li .buttons {
   display: flex;
   flex-direction: column;
+}
+
+.buttons button{
+  margin: 3px;
 }

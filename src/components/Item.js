@@ -30,7 +30,9 @@ class Item extends Component {
           </button>
           <button
             className='btn btn-warning btn-sm'
-            onClick={this.props.remove}
+            onClick={() => {
+              this.props.remove(this.props.id);
+            }}
           >
             Remove from cart
           </button>

@@ -40,11 +40,10 @@ class Counter extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h1>Shoply all day</h1>
-        <ul className='list-unstyled w-75 mt-5' style={{ margin: 'auto' }}>
+        <ul className='list-unstyled w-75 mt-5' style={{ margin: "auto" }}>
           {this.displayProducts(this.props.products)}
         </ul>
       </div>

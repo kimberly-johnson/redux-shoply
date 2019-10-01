@@ -6,7 +6,7 @@ function mapStateToProps(state) {
   return {
     products: state.products,
     cart: state.cart
-  }
+  };
 }
 
 const connectComponent = connect(
