@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class ItemDetail extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.add = this.add.bind(this);
@@ -24,18 +23,12 @@ class ItemDetail extends Component {
       image_url: image_url,
       count: count
     };
-    
+
     return (
       <li className='mt-3'>
         <img className='mr-3 w-25' src={image_url} alt='a product' />
         <div className='media-body'>
-          <Link
-            to={{
-              pathname: `/products/:${id}`,
-              state: item
-            }}>
-            <h5 className='mt-0 mb-1'>{name}</h5>
-          </Link>
+          <h5 className='mt-0 mb-1'>{name}</h5>
           <p>${price}</p>
           <p>{description}</p>
         </div>

@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { add, remove } from "../actions";
-import Item from "./Item";
+import Checkout from "./Checkout";
+import CartItem from "./CartItem";
 
-class Counter extends Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
 
     this.add = this.add.bind(this);
     this.remove = this.remove.bind(this);
-    this.displayProducts = this.displayProducts.bind(this);
+    this.cartProducts = this.cartProducts.bind(this);
   }
 
-  add(item) {this.props.add(item)}
+  add(item) { this.props.add(item) }
 
-  remove(id) {this.props.remove(id)}
+  remove(id) { this.props.remove(id) }
 
-  displayProducts(products) {
+  cartProducts(products) {
     let allProducts = [];
     for (let key in products) {
       allProducts.push(
-        <Item
+        <CartItem
           key={key}
           id={key}
           add={this.add}
@@ -37,12 +38,19 @@ class Counter extends Component {
   }
 
   render() {
+    console.log(this.props.cart)
     return (
-      <div>
-        <h1>Shoply all day</h1>
-        <ul className='list-unstyled w-75 mt-5' style={{ margin: "auto" }}>
-          {this.displayProducts(this.props.products)}
-        </ul>
+      <div className="container">
+        <div className="row">
+          <div className="col-9">
+            <ul className='list-unstyled w-75 mt-5' style={{ margin: "auto" }}>
+              {this.cartProducts(this.props.cart)}
+            </ul>
+          </div>
+          <div className="col-3">
+            <Checkout cart={this.props.cart} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -58,4 +66,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   { add, remove }
-)(Counter);
+)(Cart);

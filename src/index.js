@@ -5,6 +5,7 @@ import { createStore } from "redux";
 import rootReducer from "./rootReducer";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
+import NavBar from "./components/NavBar";
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
@@ -16,6 +17,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
+      <NavBar />
       <Routes />
     </BrowserRouter>
   </Provider>,
