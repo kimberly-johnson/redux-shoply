@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Item.css";
 
-class Item extends Component {
+class ItemDetail extends Component {
+  constructor(props){
+    super(props);
+
+    this.add = this.add.bind(this);
+    this.remove = this.remove.bind(this);
+  }
+
+  add(item) { this.props.add(item) }
+
+  remove(id) { this.props.remove(id) }
+
   render() {
-    const { id, name, price, description, image_url, count, add, remove } = this.props;
+    let { id, name, price, description, image_url, count } = this.props.location.state;
+
     const item = {
       id: id,
       name: name,
@@ -13,14 +24,14 @@ class Item extends Component {
       image_url: image_url,
       count: count
     };
-
+    
     return (
       <li className='mt-3'>
         <img className='mr-3 w-25' src={image_url} alt='a product' />
         <div className='media-body'>
           <Link
             to={{
-              pathname: `/products/${id}`,
+              pathname: `/products/:${id}`,
               state: item
             }}>
             <h5 className='mt-0 mb-1'>{name}</h5>
@@ -31,20 +42,24 @@ class Item extends Component {
         <div className='buttons'>
           <button
             className='btn btn-success btn-sm'
-            onClick={() => { add(item) }}
+            onClick={() => {
+              this.add(item);
+            }}
           >
             Add to cart
-          </button>
+            </button>
           <button
             className='btn btn-warning btn-sm'
-            onClick={() => { remove(id) }}
+            onClick={() => {
+              this.remove(id);
+            }}
           >
             Remove from cart
-          </button>
+            </button>
         </div>
       </li>
     );
   }
 }
 
-export default Item;
+export default ItemDetail;
