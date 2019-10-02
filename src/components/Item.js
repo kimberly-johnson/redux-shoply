@@ -23,9 +23,9 @@ class Item extends Component {
               pathname: `/products/${id}`,
               state: item
             }}>
-            <h5 className='mt-0 mb-1'>{name}</h5>
+            <h3 className='mt-0 mb-1'>{name}</h3>
           </Link>
-          <p>${price}</p>
+          <h5>${price}</h5>
           <p>{description}</p>
         </div>
         <div className='buttons'>

@@ -39,7 +39,6 @@ class Counter extends Component {
   render() {
     return (
       <div>
-        <h1>Shoply all day</h1>
         <ul className='list-unstyled w-75 mt-5' style={{ margin: "auto" }}>
           {this.displayProducts(this.props.products)}
         </ul>

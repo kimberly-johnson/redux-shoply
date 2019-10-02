@@ -1,0 +1,14 @@
+.navbar {
+    font-weight: bold;
+}
+
+
+.cart {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+/* .navbar:hover {
+    color: red;
+} */

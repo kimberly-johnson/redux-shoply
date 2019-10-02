@@ -38,14 +38,17 @@ class Cart extends Component {
   }
 
   render() {
-    console.log(this.props.cart)
+    let cart = this.cartProducts(this.props.cart);
+
     return (
       <div className="container">
         <div className="row">
           <div className="col-9">
-            <ul className='list-unstyled w-75 mt-5' style={{ margin: "auto" }}>
-              {this.cartProducts(this.props.cart)}
-            </ul>
+            {cart.length > 0
+              ? <ul className='list-unstyled w-75 mt-5' style={{ margin: "auto" }}>
+                {cart}
+              </ul>
+              : <h2>There isn't anything in your cart.</h2>}
           </div>
           <div className="col-3">
             <Checkout cart={this.props.cart} />

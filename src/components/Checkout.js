@@ -3,9 +3,35 @@ import React, { Component } from "react";
 class Checkout extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      code: "",
+      discount: 1.1
+    }
 
     this.getTotal = this.getTotal.bind(this);
     this.getItemInfo = this.getItemInfo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    let discount = 1;
+
+    if (this.state.code === "REMOVE10") {
+      discount = .9;
+    } else if (this.state.code === "REMOVE20") {
+      discount = .8;
+    } else if (this.state.code === "REMOVE30") {
+      discount = .7;
+    }
+
+    this.setState({ ...this.state, discount: discount });
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   getTotal(cart) {
@@ -35,17 +61,22 @@ class Checkout extends Component {
       }
     }
 
-    console.log("in cart", inCart)
     return inCart;
   }
+
 
   render() {
     let itemsInCart = this.getItemInfo(this.props).map(item => {
       return (
-        < li className="list-group-item" >{item.name} X {item.count} </li >
+        <li className="list-group-item" >{item.name} X {item.count} </li>
       );
     });
 
+    let total;
+    this.state.discount < 1 
+      ? total = (this.getTotal(this.props) * this.state.discount).toFixed(2)
+      : total = this.getTotal(this.props);
+    
     return (
       <div>
         <div className="card" style={{ width: "18rem" }}>
@@ -56,8 +87,24 @@ class Checkout extends Component {
             {itemsInCart}
           </ul>
           <div className="card-body">
-            <h2>Total: ${this.getTotal(this.props)}</h2>
-            <button>Purchase</button>
+            <h2>Total: ${total}</h2>
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  onChange={this.handleChange}
+                  placeholder="enter code"
+                  type="text"
+                  name="code">
+                </input>
+                <button className="btn btn-secondary">Apply</button>
+              </form>
+              {this.state.discount === 1
+                ? <div className="alert alert-danger" role="alert">
+                  INVALID CODE
+                  </div>
+                : null}
+            </div>
+            <button className="btn btn-info">Purchase</button>
           </div>
         </div>
       </div>
